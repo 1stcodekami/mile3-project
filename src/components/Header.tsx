@@ -6,8 +6,11 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { HiMenuAlt3 } from 'react-icons/hi'; // Hamburger icon
 import { HiX } from 'react-icons/hi'; // Close icon
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+
 
 const Header = () => {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false); 
 
   const toggleMenu = () => {
@@ -17,6 +20,10 @@ const Header = () => {
   const closeMenu = () => {
     setIsMenuOpen(false); // Close the menu
   };
+// Don't render the header on the /studio page 
+if (pathname.startsWith('/studio')) {
+   return null; 
+  }
 
   return (
     <header className="absolute w-full text-cyan-500 py-5 flex justify-between items-center px-10 z-10">
